@@ -21,15 +21,18 @@ const AddContact = () => {
 
     if (!name || !email || !number) {
       toast.warning("Please fill all the fields");
+      return false;
     }
     if (checkEmail) {
       toast.warning("Email already Exist");
+      return false;
     }
     if (checkPhone) {
       toast.warning("Phone already Exist");
+      return false;
     }
     let data = {
-      id: contact[contact.length - 1].id + 1,
+      id: contact.length > 0 ? contact[contact.length - 1].id + 1 : 0, //if there is no data, id:1 index = 0
       name,
       email,
       number,
